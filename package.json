@@ -1,16 +1,14 @@
 {
   "name": "Hoenix",
-  "author": "Futurice",
   "description": "React Native App Starter Kit for Android and iOS",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/futurice/pepperoni-app-kit"
+    "url": "https://github.com/jiawang1/hoenixN.git"
   },
   "keywords": [
     "React Native",
     "Starter Kit",
-    "Bitrise",
     "Redux",
     "Auth0"
   ],
