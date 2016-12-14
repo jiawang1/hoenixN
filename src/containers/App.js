@@ -43,7 +43,7 @@ const AppView = React.createClass({
          <Scene key="root">
       
             <Scene key="counter" component={CounterView} title="counter" initial={true} />
-            <Scene key="color" component={ColorViewContainer} title="counter"/>
+            <Scene key="color" component={ColorViewContainer} title="color"/>
             {/*__DEV__ && <DeveloperMenu />*/}
       
         </Scene>
