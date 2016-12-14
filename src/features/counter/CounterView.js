@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DeveloperMenu from '../../components/DeveloperMenu';
 import { Actions } from 'react-native-router-flux';
+import {Button} from 'antd-mobile';
 
 import {
   StyleSheet,
@@ -98,6 +99,7 @@ const CounterView = React.createClass({
             {'I\'m bored!'}
           </Text>
         </TouchableOpacity>
+        <Button>test</Button>
         <DeveloperMenu />
       </View>
     );
