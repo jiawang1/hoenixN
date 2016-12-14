@@ -33,7 +33,7 @@
     "moment": "^2.12.0",
     "react": "~15.3.2",
     "react-dom": "~15.3.2",
-    "react-native": "~0.38.0",
+    "react-native": "~0.37.0",
     "react-native-router-flux": "^3.37.0",
     "react-native-vector-icons": "^3.0.0",
     "react-redux": "^4.4.5",
