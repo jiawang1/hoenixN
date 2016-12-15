@@ -6,6 +6,7 @@ import * as SessionStateActions from '../features/session/SessionState';
 import store from '../common/configStore';
 import { Router, Scene } from 'react-native-router-flux';
 import CounterView from '../features/counter/CounterView';
+import HomeView from '../features/home/HomeView';
 import ColorViewContainer from '../features/colors/ColorViewContainer';
 
 const AppView = React.createClass({
@@ -38,12 +39,15 @@ const AppView = React.createClass({
       );
     }
 
+     console.log("go to home page");
+      console.log(HomeView);
+
     return (
         <Router>
          <Scene key="root">
-      
-            <Scene key="counter" component={CounterView} title="counter" initial={true} />
-            <Scene key="color" component={ColorViewContainer} title="color"/>
+           <Scene key="home" component={HomeView} title="五星" initial={true} />
+           <Scene key="counter" component={CounterView} title="counter" />
+           <Scene key="color" component={ColorViewContainer} title="color"/>
             {/*__DEV__ && <DeveloperMenu />*/}
       
         </Scene>

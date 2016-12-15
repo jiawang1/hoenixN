@@ -38,7 +38,9 @@ const CounterView = React.createClass({
   bored() {
       Actions.color();
   },
-
+  pressButton(){
+     Actions.color();
+  },
   renderUserInfo() {
     if (!this.props.userName) {
       return null;
@@ -69,7 +71,7 @@ const CounterView = React.createClass({
       <View style={styles.container}>
 
         {this.renderUserInfo()}
-
+        <Text>{`from ${this.props.from}`}</Text>
         <TouchableOpacity
           onPress={this.increment}
           style={[styles.counterButton, loadingStyle]}>
@@ -95,7 +97,7 @@ const CounterView = React.createClass({
             {'I\'m bored!'}
           </Text>
         </TouchableOpacity>
-        <Button>test</Button>
+        <Button onClick={()=>{this.pressButton()}}>to color</Button>
         <DeveloperMenu />
       </View>
     );
