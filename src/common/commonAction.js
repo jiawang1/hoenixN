@@ -1,25 +1,26 @@
 import 'whatwg-fetch';
 import {getType} from './helper.js';
+import {getAuthenticationToken} from '../utils/authentication';
+import {getConfiguration,APP_CONTEXT_ROOT,APP_TIMEOUT} from '../utils/configuration';
 
-var rootContext = "";
+const TIMEOUT = getConfiguration(APP_TIMEOUT);
+const rootContext = getConfiguration(APP_CONTEXT_ROOT);
 
-const __fetch = (_method) => (option) => {
+/*
+ *  generate absolute URL for backend service
+ */ 
+const correntURL = (ops)=>{
 
-		let ops = Object.assign({},{
-		//	mode:'no-cors', 
-			credentials: 'same-origin',
-		},option, {method: _method});
-
-		if(rootContext){
+	if(rootContext){
 			if(ops.url.charAt(0)==='.'){
 				ops.url = ops.url.slice(1);
 			}else if(ops.url.charAt(0)!=='/'){
 				ops.url = '/' + ops.url;
 			}
 			ops.url = rootContext + ops.url;
-		}
-		
-		if(ops.param){
+	   }
+
+	if(ops.param){
 			var sParam = Object.keys(ops.param).reduce((pre,current)=>{
 				 if( getType( ops.param[current]) ==='String' ||getType( ops.param[current]) === 'Number'){
 					 return  pre + (pre.length > 0?"&":'') + current + '=' + encodeURIComponent(ops.param[current]);
@@ -35,33 +36,68 @@ const __fetch = (_method) => (option) => {
 			}, '');
 			
 			if(sParam&&sParam.length > 0){
-				ops.url = ops.url + "?" + sParam
+				ops.url = ops.url + "?" + sParam;
 			}
 		}
-		
-		return new Promise((resolve, reject)=>{
-			fetch(ops.url,ops).then(response=>{
-				if(response.headers.get('__authentication__') === 'failed'){
-					if(window){
-						response.json().then(json=>{
-							window.location.href = json.map.__message__.trim();
-						}).catch(err=>{
-							reject(err);
-						});
-					}else{
-						reject('not in browser environment, can not redirect');
-					}	
-				}else{
-					resolve(response);
-				}
-			});
-		});
+};
+
+/**
+ * Rejects a promise after `ms` number of milliseconds, if it is still pending
+ */
+const timeout = (promise, ms) =>{
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error('timeout')), ms);
+    promise.then(response => {
+        clearTimeout(timer);
+        resolve(response);
+      })
+      .catch(reject);
+  });
+};
+
+
+const correntOption = async (option)=>{
+
+	let token = await getAuthenticationToken();
+	return {
+			credentials: 'same-origin',
+			...option,
+			headers:{
+				...option.headers,
+				'Authorization-token':token
+			},
+			method: _method
+		};
+
+};
+const __fetch =  (_method) => async (option) => {
+
+		let ops = await correntOption(option);
+		correntURL(ops);
+		let response = await fetch(ops.url,ops);
+		if (response.status >= 400) {
+			var error = new Error(`response status : ${response.status}, Error is ${response.statusText}`);
+			error.response = response;
+			throw error;
+		}
+		if(response.headers.get('__authentication__') === 'failed'){
+			//TODO handle auth failed
+		}
+		return response;
 
 	};
-
+/*
+ *	 handle http GET request
+ */
 export const get = __fetch('GET');
+/*
+ *	 handle http POST request
+ */
 export const post = __fetch('POST');
-export const getJson = (option)=>{  
+/*
+*	handle http GET request in JSON format
+*/
+export const getJson = async (option)=>{  
 	if(option.headers){
 		option.headers['Accept'] = 'application/json';
 	}else{
@@ -69,17 +105,16 @@ export const getJson = (option)=>{
 			'Accept' : 'application/json',
 		};
 	}
-	return get.call(null, option).then(checkStatus).then(parseJson);
+	let response = await get(option);
+	return response.json();
 };
 
 export const batchGet = (aOps)=>Promise.all(aOps.map(get));
 export const batchGetJson = (aOps)=>Promise.all(aOps.map(getJson));
-export const postJson = (option, data)=>{
-
+export const postJson = async (option, data)=>{
 		if(option.headers){
 			option.headers['Accept'] = 'application/json';
 			option.headers['Content-Type'] = 'application/json';
-
 		}else{
 			option.headers = {
 				'Content-Type':'application/json',
@@ -87,17 +122,11 @@ export const postJson = (option, data)=>{
 			};
 		}
 		option.body = typeof data ==='string'?data:JSON.stringify(data);
-		return post.call(null, option).then(checkStatus).then(parseJson);
+		let response = await post(option);
+		return response.json();
 };
 
 export const batchPostJson = (aOps)=> Promise.all(aOps.map((ops)=> postJson(ops.option, ops.data)));
-
-export const postForm = (option, form)=>{
-
-	var formEle = typeof form ==='string'?document.querySelector(form): form;
-	return post.call(null, Object.assign({},option,{body:formEle })).then(checkStatus).then(parseJson);
-
-};
 
 const __generateThunk = (method)=>(actionCreator, url) => (option) =>(dispatch)=>{
 
@@ -125,20 +154,6 @@ export const generatePostThunk = __generateThunk((url, option)=>{
 export const generateGetThunk = __generateThunk((url, option)=>{
 	return getJson({param: option,url:url });
 });
-
-
-const checkStatus = (response)=>{
-
-	if(Math.floor(response.status/100) === 2){
-		return response;
-	}else{
-		var error = new Error(`response status : ${response.status}, Error is ${response.statusText}`);
-		error.response = response;
-		return Promise.reject(error);
-	}
-};
-
-const parseJson = (res)=>res.json();
 
 export const getContent = json=>json.map.__content__;
 

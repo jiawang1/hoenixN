@@ -6,7 +6,7 @@ import HttpError from 'standard-http-error';
 import * as api from '../api';
 import * as configuration from '../configuration';
 
-const API_ROOT = 'https://mock.getpepperoni.com';
+const API_ROOT = 'https://mock.hoenix.com';
 const SIMPLE_ENDPOINT = '/endpoint';
 const ERROR_ENDPOINT = '/cant/touch/this';
 const PROTECTED_ENDPOINT = '/nothing/to/see/here';

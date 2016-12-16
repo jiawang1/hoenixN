@@ -9,8 +9,7 @@
   "keywords": [
     "React Native",
     "Starter Kit",
-    "Redux",
-    "Auth0"
+    "Redux"
   ],
   "version": "1.0.0",
   "private": false,

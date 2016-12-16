@@ -1,6 +1,14 @@
-import {Map} from 'immutable';
+import {fromJS} from 'immutable';
 
-let configuration = Map();
+export const APP_CONTEXT_ROOT = 'APP_CONTEXT_ROOT';
+export const APP_TIMEOUT = 'APP_TIMEOUT';
+
+let initConfig = {
+  [APP_CONTEXT_ROOT]:'/fivestaradminstorefront',
+  [APP_TIMEOUT]:7000
+};
+
+let configuration = fromJS(initConfig);
 
 export function setConfiguration(name, value) {
   configuration = configuration.set(name, value);
@@ -16,7 +24,7 @@ export function unsetConfiguration(name) {
 
 export function getConfiguration(key) {
   if (!configuration.has(key)) {
-    throw new Error('Undefined configuration key: ' + key);
+    return null;
   }
 
   return configuration.get(key);
