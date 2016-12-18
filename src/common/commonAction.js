@@ -1,10 +1,9 @@
-import 'whatwg-fetch';
 import {getType} from './helper.js';
 import {getAuthenticationToken} from '../utils/authentication';
-import {getConfiguration,APP_CONTEXT_ROOT,APP_TIMEOUT} from '../utils/configuration';
+import {getConfiguration,APP_CONTEXT_ROOT,APP_TIMEOUT,APP_DOMAIN} from '../utils/configuration';
 
 const TIMEOUT = getConfiguration(APP_TIMEOUT);
-const rootContext = getConfiguration(APP_CONTEXT_ROOT);
+const rootContext = getConfiguration(APP_DOMAIN) + getConfiguration(APP_CONTEXT_ROOT);
 
 /*
  *  generate absolute URL for backend service
@@ -56,23 +55,22 @@ const timeout = (promise, ms) =>{
 };
 
 
-const correntOption = async (option)=>{
-
+const correntOption = async (option, method)=>{
 	let token = await getAuthenticationToken();
 	return {
-			credentials: 'same-origin',
+			//credentials: 'same-origin',
 			...option,
 			headers:{
 				...option.headers,
-				'Authorization-token':token
+				AuthorizationToken:token
 			},
-			method: _method
+			method:method
 		};
 
 };
 const __fetch =  (_method) => async (option) => {
-
-		let ops = await correntOption(option);
+		
+		let ops = await correntOption(option, _method);
 		correntURL(ops);
 		let response = await fetch(ops.url,ops);
 		if (response.status >= 400) {
@@ -111,6 +109,10 @@ export const getJson = async (option)=>{
 
 export const batchGet = (aOps)=>Promise.all(aOps.map(get));
 export const batchGetJson = (aOps)=>Promise.all(aOps.map(getJson));
+
+/*
+*	handle http GET request in JSON format
+*/
 export const postJson = async (option, data)=>{
 		if(option.headers){
 			option.headers['Accept'] = 'application/json';
@@ -128,29 +130,38 @@ export const postJson = async (option, data)=>{
 
 export const batchPostJson = (aOps)=> Promise.all(aOps.map((ops)=> postJson(ops.option, ops.data)));
 
-const __generateThunk = (method)=>(actionCreator, url) => (option) =>(dispatch)=>{
+const __generateThunk = (method)=>(actionCreator, url) => (option) =>async (dispatch)=>{
 
-	return method.call(null,url, option).then(json=>{
-	
-		if(json.status === 'success'){
-			var __content = getType(json.map.__content__) === 'String'?JSON.parse(json.map.__content__):json.map.__content__;
-			dispatch(actionCreator(__content));
-			return __content;
-		}else{
-			dispatch(showError(json.map.__message__));
-			return null;
-		}
-	}).catch(err=>{
-		console.error(err.stack || err);
-		dispatch(showError(`未知的异常，请联系技术人员`));
-		return Promise.reject(err);
-	});
+try {
+	let json = await method.call(null,url, option);
+
+	if(json.status === 'success'){
+		var __content = getType(json.map.__content__) === 'String'?JSON.parse(json.map.__content__):json.map.__content__;
+		dispatch(actionCreator(__content));
+		return __content;
+	}else{
+		//TODO  made a global error handler
+	}
+} catch (error) {
+	console.error(err.stack || err);
+	throw error;
+}
 };
 
+/**
+ *  used to generate thunk function for post reqeust, note the function will only supprot JSON format
+ *  @param actionCreator: reducx action creator
+ *  @param url: request url
+ */
 export const generatePostThunk = __generateThunk((url, option)=>{
 	return postJson({url: url}, option);
 });
 
+/**
+ *  used to generate thunk function for get reqeust, note the function will only supprot JSON format
+ *  @param actionCreator: reducx action creator
+ *  @param url: request url
+ */
 export const generateGetThunk = __generateThunk((url, option)=>{
 	return getJson({param: option,url:url });
 });

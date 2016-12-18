@@ -2,10 +2,12 @@ import {fromJS} from 'immutable';
 
 export const APP_CONTEXT_ROOT = 'APP_CONTEXT_ROOT';
 export const APP_TIMEOUT = 'APP_TIMEOUT';
+export const APP_DOMAIN = 'APP_DOMAIN';
 
 let initConfig = {
-  [APP_CONTEXT_ROOT]:'/fivestaradminstorefront',
-  [APP_TIMEOUT]:7000
+  [APP_CONTEXT_ROOT]:'',
+  [APP_TIMEOUT]:7000,
+  [APP_DOMAIN]:'http://localhost:8079'
 };
 
 let configuration = fromJS(initConfig);
