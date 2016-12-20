@@ -128,7 +128,7 @@ const data1 = [
                     renderItem={(dataItem, index) => (
                     <View style={{backgroundColor: '#fff', justifyContent: 'center',alignItems: 'center',height:103 }}>
                         <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
-                        <Text>{dataItem.text}</Text>
+                        <Text ellipsizeMode='tail' numberOfLines={1}>{dataItem.text}</Text>
                     </View>  
                     )}
                 />
