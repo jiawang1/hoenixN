@@ -1,8 +1,10 @@
 import React, {PropTypes,Component} from 'react';
 import {connect} from 'react-redux';
-import { SearchBar, Button, Carousel,Grid,TabBar } from 'antd-mobile';
+import { SearchBar, Button, Carousel,Grid,TabBar,List,Popup,WhiteSpace,Icon } from 'antd-mobile';
+import Dimensions from 'Dimensions';
 import {
   Text,
+  Image,TouchableHighlight,
   View,
   StyleSheet
 } from 'react-native';
@@ -25,6 +27,7 @@ class ColorView extends Component{
         background: `rgba(${color()},${color()},${color()}, 1)` ,
         selectedTab:'redTab',
         hidden: false,
+        sel: '',
       };
     }
   onNextPress() {
@@ -41,19 +44,64 @@ class ColorView extends Component{
         </View>
         );
     }
+  openPopup() {
+    Popup.show(<View style={{height:500}}>
+      <List renderHeader={()=>this.renderHeader()}>
+        <List.Item key={1}>49寸智能4k</List.Item>
+        <List.Item key={2}>50寸智能4k</List.Item>
+        <List.Item key={3}>55寸智能4k</List.Item>
+      </List>
+    </View>, { animationType: 'slide-up', maskClosable: true });
+  }
+  
+  renderHeader() {
+    return (
+        <View style={{ position: 'relative' }}>
+          <Text>委托买入</Text>
+          <Text style={{position: 'absolute', right: 3, top: -5, color:'red' }} onPress={()=>this.onClose()} >
+          关闭
+          </Text>
+        </View>
+      )
+  }
+
+  
+  onClose() {
+    let sel = "cancel";
+    this.setState({ sel });
+    Popup.hide();
+  }
   render() {
 
     const index = this.props.index;
     const text = `View #${index}`;
     return (
-      <View style={[styles.container, {backgroundColor: this.state.background}]}>
+      <View style={[styles.container, {backgroundColor: '#F8F8F8'}]}>
+      <View style={styles.imageContainer}>
+        <Carousel style={styles.carousel} infinite dots={false}> 
+            <Image style={styles.image} source={{uri: 'http://m.360buyimg.com/n12/jfs/t3778/245/902901777/147756/5b1618be/5817f014N6710b01e.jpg!q70.jpg'}} />
+            <Image style={styles.image} source={{uri: 'http://m.360buyimg.com/n12/jfs/t3415/166/1887465515/142495/edec4024/5837a76bN90915d39.jpg!q70.jpg'}} />
+            <Image style={styles.image} source={{uri: 'http://m.360buyimg.com/n12/jfs/t3133/14/1568885205/215983/d5a5af0/57cfb628N297332ea.jpg!q70.jpg'}} />
+            <Image style={styles.image} source={{uri: 'http://m.360buyimg.com/n12/jfs/t3247/279/3074453513/51884/dc637ab1/57eb7e1dN47558c9e.jpg!q70.jpg'}} />
+            <Image style={styles.image} source={{uri: 'http://m.360buyimg.com/n12/jfs/t1012/326/1264711423/73166/b202b27e/558d18b0N081671be.jpg!q70.jpg'}} />            
+        </Carousel>
+      </View>
+        {/* 
         <Text onPress={(...args)=>{this.onNextPress(...args)}}>
           {text}
-        </Text>
-        <Text>1273197
-        </Text>
+        </Text>*/}
+        <Text style={{padding:10,color:'#333'}}>海信（Hisense）LED55EC520UA 55英寸 VIDAA3 14核 炫彩4K智能电视(黑色)</Text>
+        <Text style={{paddingLeft:10,color:'red',fontSize:20}}>¥ 2000.00</Text>
+        {/* */}
+        <WhiteSpace size="sm" />
+        <TouchableHighlight underlayColor='#fff' onPress={()=>{this.openPopup()}}>
+            <View> 
+              <Text>已选： 55寸智能4K 1件 增值保障</Text>
+            </View> 
+        </TouchableHighlight>
+        
         <TabBar
-                    style={{position:'absolute',bottom:20}}
+                   
                     unselectedTintColor="#949494"
                     tintColor="#33A3F4"
                     barTintColor="white"
@@ -128,8 +176,19 @@ class ColorView extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 54,
+    // justifyContent: 'center',
+    // alignItems: 'center'
+  },image:{
+    width: Dimensions.get('window').width-40,
+    height: Dimensions.get('window').width-40
+  },carousel: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    
+  },imageContainer:{
+    height: Dimensions.get('window').width,
+    padding:20,
   }
 });
 
