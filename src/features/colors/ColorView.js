@@ -58,7 +58,7 @@ class ColorView extends Component{
     return (
         <View style={{ position: 'relative' }}>
           <Text>委托买入</Text>
-          <Text style={{position: 'absolute', right: 3, top: -5, }} onClick={() => this.onClose()} >
+          <Text style={{position: 'absolute', right: 3, top: -5, color:'red' }} onPress={()=>this.onClose()} >
           关闭
           </Text>
         </View>
@@ -68,9 +68,7 @@ class ColorView extends Component{
   
   onClose() {
     let sel = "cancel";
-    console.log("......1");
     this.setState({ sel });
-     console.log("......2");
     Popup.hide();
   }
   render() {
