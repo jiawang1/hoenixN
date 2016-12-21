@@ -143,7 +143,7 @@ try {
 		//TODO  made a global error handler
 	}
 } catch (error) {
-	console.error(err.stack || err);
+	console.error(error.stack || error);
 	throw error;
 }
 };
