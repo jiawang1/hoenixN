@@ -112,10 +112,10 @@ const data1 = [
 
     render(){
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} >
                 <SearchBar placeholder="搜索"></SearchBar>
                 <View style={styles.imageContainer}>
-                    <Carousel style={styles.carousel} autoplay infinite> 
+                    <Carousel  autoplay infinite> 
                         <Image style={styles.image} source={require('./../../image/sale_product_01_280x190.png')} />
                         <Image style={styles.image} source={require('./../../image/sale_product_02_280x190.png')} />
                         <Image style={styles.image} source={require('./../../image/sale_product_03_280x190.png')} />
@@ -125,7 +125,7 @@ const data1 = [
                 </View>
                 <Grid data={data} columnNum={4}
                     renderItem={(dataItem, index) => (
-                    <View style={{backgroundColor: '#fff', justifyContent: 'center',alignItems: 'center',height:103 }}>
+                    <View style={{  justifyContent: 'center',alignItems: 'center',backgroundColor: '#fff',height:103 }}>
                         <Image source={dataItem.img} />
                         <Text>{dataItem.text}</Text>
                     </View>  
@@ -230,7 +230,7 @@ const data1 = [
                     <View style={{flex: 2, backgroundColor: 'skyblue'}} />
                     <View style={{flex: 3, backgroundColor: 'steelblue'}} />
                 </View>
-                {/*
+               {/*
                 <TabBar
                     style={{position:'absolute',bottom:20}}
                     unselectedTintColor="#949494"
@@ -241,8 +241,8 @@ const data1 = [
                     <TabBar.Item
                     title="生活"
                     key="生活"
-                    icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-                    selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
+                    icon={ require('./../../image/television.png') }
+                    selectedIcon={require('./../../image/television.png')}
                     selected={this.state.selectedTab === 'blueTab'}
                     badge={1}
                     onPress={() => {
@@ -285,7 +285,7 @@ const data1 = [
                     </TabBar.Item>
                     <TabBar.Item
                     icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/cKhfyLTszUeFARPgfokz.png' }}
-                    selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/bqUXyjiOyKrXRfiIZVsZ.png' }}
+                   selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/bqUXyjiOyKrXRfiIZVsZ.png' }}
                     title="我的"
                     key="我的"
                     selected={this.state.selectedTab === 'yellowTab'}
@@ -311,10 +311,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F8F8',
     marginTop: 54,
   },
-  header:{
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
   carousel: {
     justifyContent: 'center',
     alignItems: 'center',
