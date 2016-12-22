@@ -113,7 +113,9 @@ const data1 = [
     render(){
         return (
             <ScrollView style={styles.container}>
+                <View>
                 <SearchBar placeholder="搜索"></SearchBar>
+                </View>
                 <View style={styles.imageContainer}>
                     <Carousel style={styles.carousel} autoplay infinite> 
                         <Image style={styles.image} source={require('./../../image/sale_product_01_280x190.png')} />
