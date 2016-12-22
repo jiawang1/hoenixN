@@ -112,8 +112,10 @@ const data1 = [
 
     render(){
         return (
-            <ScrollView style={styles.container} >
+            <ScrollView style={styles.container}>
+                <View>
                 <SearchBar placeholder="搜索"></SearchBar>
+                </View>
                 <View style={styles.imageContainer}>
                     <Carousel  autoplay infinite> 
                         <Image style={styles.image} source={require('./../../image/sale_product_01_280x190.png')} />
@@ -309,7 +311,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F8F8',
-    marginTop: 54,
+    marginTop: 20,
   },
 
   carousel: {

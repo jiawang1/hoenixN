@@ -45,7 +45,7 @@ const AppView = React.createClass({
          <Scene key="root">
            <Scene key="home" hideNavBar={true} component={HomeView} title="五星" initial={true} />
            <Scene key="counter" component={CounterView} title="counter" />
-           <Scene key="color" hideNavBar={false} component={ColorViewContainer} title="color"/>
+           <Scene key="color" hideNavBar={false} component={ColorViewContainer} title="商品详情"/>
            <Scene key="cart" hideNavBar={false} component={CartView} title="cart"/>
             {/*__DEV__ && <DeveloperMenu />*/}
         </Scene>
