@@ -24,7 +24,7 @@ class CartView extends Component{
   }
   handleMessage(e){
     console.log(`information from web page ${e.nativeEvent.data}`);
-      Actions.color();
+      Actions.productDetail();
   }
 }
 

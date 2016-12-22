@@ -31,7 +31,7 @@ const options = [
     "Option 2"
   ]
 
-class ColorView extends Component{
+class ProductDetailView extends Component{
   
   constructor(){
         super();
@@ -236,4 +236,4 @@ const styles = StyleSheet.create({
 
 export default connect(state=>({
     test:1
-}))(ColorView);
+}))(ProductDetailView);

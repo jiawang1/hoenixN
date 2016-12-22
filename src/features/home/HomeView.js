@@ -94,13 +94,11 @@ const data1 = [
         
 
     }
-
     pressButon(){
         Actions.cart({from: 'Home'});
     }
-
     toDetail(){
-        Actions.color({from: 'Home'});
+        Actions.productDetail({from: 'Home'});
     }
     renderContent(pageText) {
         return (

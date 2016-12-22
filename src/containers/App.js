@@ -7,7 +7,7 @@ import store from '../common/configStore';
 import { Router, Scene } from 'react-native-router-flux';
 import CounterView from '../features/counter/CounterView';
 import HomeView from '../features/home/HomeView';
-import ColorViewContainer from '../features/colors/ColorViewContainer';
+import ProductDetailView from '../features/productDetail/ProductDetailView';
 import CartView from '../features/cart/CartView';
 
 const AppView = React.createClass({
@@ -45,8 +45,8 @@ const AppView = React.createClass({
          <Scene key="root">
            <Scene key="home" hideNavBar={true} component={HomeView} title="五星" initial={true} />
            <Scene key="counter" component={CounterView} title="counter" />
-           <Scene key="color" hideNavBar={false} component={ColorViewContainer} title="商品详情"/>
-           <Scene key="cart" hideNavBar={false} component={CartView} title="cart"/>
+           <Scene key="productDetail" hideNavBar={false} component={ProductDetailView} title="商品详情"/>
+           <Scene key="cart" hideNavBar={false} component={CartView} title="购物车"/>
             {/*__DEV__ && <DeveloperMenu />*/}
         </Scene>
       </Router>

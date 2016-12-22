@@ -36,10 +36,10 @@ const CounterView = React.createClass({
     random();
   },
   bored() {
-      Actions.color();
+      Actions.productDetail();
   },
   pressButton(){
-     Actions.color();
+     Actions.productDetail();
   },
   renderUserInfo() {
     if (!this.props.userName) {
