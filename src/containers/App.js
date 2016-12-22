@@ -48,7 +48,6 @@ const AppView = React.createClass({
            <Scene key="color" hideNavBar={false} component={ColorViewContainer} title="color"/>
            <Scene key="cart" hideNavBar={false} component={CartView} title="cart"/>
             {/*__DEV__ && <DeveloperMenu />*/}
-      
         </Scene>
       </Router>
    );
