@@ -96,7 +96,7 @@ const data1 = [
     }
 
     pressButon(){
-        Actions.counter({from: 'Home'});
+        Actions.cart({from: 'Home'});
     }
 
     toDetail(){
@@ -224,7 +224,7 @@ const data1 = [
                         </View>
                     </TouchableHighlight>
                 </Flex>
-                <Button onClick={()=>{this.pressButon()}}>to counter</Button>
+                <Button onClick={()=>{this.pressButon()}}>to cart</Button>
                 <View style={{flex: 1}}>
                     <View style={{flex: 1, backgroundColor: 'powderblue'}} />
                     <View style={{flex: 2, backgroundColor: 'skyblue'}} />

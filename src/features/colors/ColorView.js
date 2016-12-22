@@ -13,12 +13,6 @@ import * as NavigationState from '../navigation/NavigationState';
 
 const color = () => Math.floor(255 * Math.random());
 
-/**
- * Sample view to demonstrate navigation patterns.
- * @TODO remove this module in a live application.
- */
-
-
 class ColorView extends Component{
   
   constructor(){
@@ -110,8 +104,8 @@ class ColorView extends Component{
                     <TabBar.Item
                     title="生活"
                     key="生活"
-                    icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-                    selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
+                   // icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
+                    //selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
                     selected={this.state.selectedTab === 'blueTab'}
                     badge={1}
                     onPress={() => {
@@ -124,8 +118,8 @@ class ColorView extends Component{
                     {this.renderContent('生活')}
                     </TabBar.Item>
                     <TabBar.Item
-                    icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-                    selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
+                   // icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
+                    //selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
                     title="口碑"
                     key="口碑"
                     selected={this.state.selectedTab === 'redTab'}
@@ -139,8 +133,8 @@ class ColorView extends Component{
                     {this.renderContent('口碑')}
                     </TabBar.Item>
                     <TabBar.Item
-                    icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-                    selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
+                    //icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
+                    //selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
                     title="朋友"
                     key="朋友"
                     selected={this.state.selectedTab === 'greenTab'}
@@ -153,8 +147,8 @@ class ColorView extends Component{
                     {this.renderContent('朋友')}
                     </TabBar.Item>
                     <TabBar.Item
-                    icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/cKhfyLTszUeFARPgfokz.png' }}
-                    selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/bqUXyjiOyKrXRfiIZVsZ.png' }}
+                    //icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/cKhfyLTszUeFARPgfokz.png' }}
+                    //selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/bqUXyjiOyKrXRfiIZVsZ.png' }}
                     title="我的"
                     key="我的"
                     selected={this.state.selectedTab === 'yellowTab'}
@@ -183,8 +177,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width-40,
     height: Dimensions.get('window').width-40
   },carousel: {
-    justifyContent: 'center',
-    alignItems: 'center',
+
     
   },imageContainer:{
     height: Dimensions.get('window').width,
