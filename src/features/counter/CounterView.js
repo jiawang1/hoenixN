@@ -1,6 +1,4 @@
-
-import * as NavigationState from '../navigation/NavigationState';
-import * as actions from './actions';
+import {actions} from './counterState';
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -66,6 +64,8 @@ const CounterView = React.createClass({
     const loadingStyle = this.props.loading
       ? {backgroundColor: '#eee'}
       : null;
+
+      console.log(actions);
 
     return (
       <View style={styles.container}>

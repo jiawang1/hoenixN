@@ -4,9 +4,7 @@ import App from './src/containers/App';
 import React from 'react';
 import {AppRegistry} from 'react-native';
 
-
 const Hoenix = React.createClass({
-
   render() {
     return (
       <Provider store={store}>
