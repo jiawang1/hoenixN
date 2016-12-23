@@ -1,5 +1,5 @@
 
-import {generateGetThunk} from '../../common/commonAction';
+import {generateGetThunk,createAction} from '../../common/commonAction';
 import {fromJS} from 'immutable';
 
 
@@ -29,7 +29,7 @@ async function generateRandomNumber() {
   };
 }
 
-const random = generateGetThunk(getRandom, '/test/api');
+const random = generateGetThunk(createAction(RANDOM_RESPONSE), '/test/api');
 
 /**
  * export the acitons
@@ -59,7 +59,7 @@ export default function CounterStateReducer(state = initialState, action = {}) {
     case RANDOM_RESPONSE:
       return state
         .set('loading', false)
-        .set('value', action.payload);
+        .set('value', action.data.number);
 
     default:
       return state;

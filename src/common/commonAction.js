@@ -169,3 +169,5 @@ export const generateGetThunk = __generateThunk((url, option)=>{
 
 export const getContent = json=>json.map.__content__;
 
+export const createAction = (type)=>(data)=>({type: type, data: data});
+
