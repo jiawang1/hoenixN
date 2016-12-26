@@ -60,7 +60,7 @@ const AppView = React.createClass({
                           <Scene key="tab5" component={CounterView} title="Tab #5" icon={TabIcon} />
                   </Scene >
                   <Scene key="productDetailContainer" tabs={true}>
-                     <Scene key="productDetail" component={ProductDetailView} icon={TabIcon} title="商品详情"/>
+                     <Scene key="productDetail" component={ProductDetailView} initial={true} icon={TabIcon} title="商品详情"/>
                   </Scene>
                 
               {/*__DEV__ && <DeveloperMenu />*/}
