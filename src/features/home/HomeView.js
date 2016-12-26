@@ -92,11 +92,19 @@ class HomeView extends Component {
         };
 
     }
+
+    // static renderNavigationBar(props){
+
+    //     return ( <View>
+    //                 <SearchBar placeholder="搜索"></SearchBar>
+    //             </View>);
+
+    // }
     pressButon() {
         Actions.counter({ from: 'Home' });
     }
     toDetail() {
-        Actions.productDetail({ from: 'Home' });
+        Actions.productDetailContainer({ from: 'Home' });
     }
     renderContent(pageText) {
         return (
