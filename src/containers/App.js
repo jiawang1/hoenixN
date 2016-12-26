@@ -9,6 +9,7 @@ import CounterView from '../features/counter/CounterView';
 import HomeView from '../features/home/HomeView';
 import ProductDetailView from '../features/productDetail/ProductDetailView';
 import CartView from '../features/cart/CartView';
+import CategoryView from '../features/category/CategoryView';
 
 
 
@@ -55,7 +56,7 @@ const AppView = React.createClass({
                           <Scene key="cartContainer"  title="购物车" icon={TabIcon}>
                               <Scene key="cart" hideNavBar={false} component={CartView} title="购物车"/>
                           </Scene>
-                          <Scene key="counter" component={CounterView} title="Tab #3"  icon={TabIcon}/>
+                          <Scene key="category" component={CategoryView} title="分类"  icon={TabIcon}/>
                           <Scene key="tab4" component={CounterView} title="Tab #4" hideNavBar={true} icon={TabIcon}/>
                           <Scene key="tab5" component={CounterView} title="Tab #5" icon={TabIcon} />
                   </Scene >
