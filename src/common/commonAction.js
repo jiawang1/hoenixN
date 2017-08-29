@@ -130,7 +130,6 @@ export const postJson = async (option, data)=>{
 };
 
 export const batchPostJson = (aOps)=> Promise.all(aOps.map((ops)=> postJson(ops.option, ops.data)));
-
 const __generateThunk = (method)=>(actionCreator, url) => (option) =>async (dispatch)=>{
 
 try {

@@ -14,7 +14,7 @@ class CartView extends Component{
       return (
         <View style={styles.cartView}>
           <WebView
-            source={{uri: 'http://172.26.14.87:8088/'}}
+            source={{uri: 'http://baidu.com'}}
             style={{marginTop: 20}}
             onMessage={(event)=>{ this.handleMessage(event)}}
            // contentInset={ {top: 10, left: 0, bottom: 0, right: 0}}

@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "6.9"
+  - "7.1"
+sudo: false
+env:
+  - NODE_ENV='test'
+script:
+  - cp env.example.js env.js
+  - npm run lint
+  - npm test

@@ -1,8 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
 import { SearchBar, Button, Carousel, Grid, TabBar, Flex } from 'antd-mobile';
-import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
+import {connect} from 'react-redux';
 import Dimensions from 'Dimensions';
 import {
     StyleSheet,
@@ -90,16 +89,7 @@ class HomeView extends Component {
             selectedTab: 'redTab',
             hidden: false,
         };
-
     }
-
-    // static renderNavigationBar(props){
-
-    //     return ( <View>
-    //                 <SearchBar placeholder="搜索"></SearchBar>
-    //             </View>);
-
-    // }
     pressButon() {
         Actions.counter({ from: 'Home' });
     }
@@ -137,25 +127,6 @@ class HomeView extends Component {
                         </View>
                     )}
                     />
-                {/* 
-                <View style={{height:40,backgroundColor: '#fff',alignItems: 'center'}}>
-                    <Carousel vertical dots={false} autoplay infinite> 
-                        <Text style={{height:40,paddingLeft:10}}>五星app改版啦</Text>
-                        <Text style={{height:40,paddingLeft:10}}>圣诞好礼满1000减100</Text>
-                        <Text style={{height:40,paddingLeft:10}}>小家电品类低至五折</Text>
-                    </Carousel>
-                </View>
-                <Text>this should be the home page for Wuxing site</Text>
-                
-                <Grid data={data1} columnNum={2} hasLine={false}
-                    renderItem={(dataItem, index) => (
-                    <View style={{backgroundColor: '#fff',alignItems: 'center',height:500 }}>
-                        <Image style={{width:150,height:150}} source={dataItem.img} />
-                        <Text ellipsizeMode='tail' numberOfLines={1}>{dataItem.text}</Text>
-                    </View>  
-                    )}
-                />
-                */}
                 <Flex wrap='wrap'>
                     <TouchableHighlight underlayColor='#F8F8F8' onPress={() => { this.toDetail() } }>
                         <View style={styles.leftItem}>
@@ -236,75 +207,7 @@ class HomeView extends Component {
                     <View style={{ flex: 2, backgroundColor: 'skyblue' }} />
                     <View style={{ flex: 3, backgroundColor: 'steelblue' }} />
                 </View>
-                {/*
-                <TabBar
-                    style={{position:'absolute',bottom:20}}
-                    unselectedTintColor="#949494"
-                    tintColor="#33A3F4"
-                    barTintColor="white"
-                    hidden={this.state.hidden}
-                >
-                    <TabBar.Item
-                    title="生活"
-                    key="生活"
-                    icon={ require('./../../image/television.png') }
-                    selectedIcon={require('./../../image/television.png')}
-                    selected={this.state.selectedTab === 'blueTab'}
-                    badge={1}
-                    onPress={() => {
-                        this.setState({
-                        selectedTab: 'blueTab',
-                        });
-                    }}
-                    data-seed="logId"
-                    >
-                    {this.renderContent('生活')}
-                    </TabBar.Item>
-                    <TabBar.Item
-                    icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-                    selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
-                    title="口碑"
-                    key="口碑"
-                    selected={this.state.selectedTab === 'redTab'}
-                    onPress={() => {
-                        this.setState({
-                        selectedTab: 'redTab',
-                        });
-                    }}
-                    data-seed="logId1"
-                    >
-                    {this.renderContent('口碑')}
-                    </TabBar.Item>
-                    <TabBar.Item
-                    icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-                    selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-                    title="朋友"
-                    key="朋友"
-                    selected={this.state.selectedTab === 'greenTab'}
-                    onPress={() => {
-                        this.setState({
-                        selectedTab: 'greenTab',
-                        });
-                    }}
-                    >
-                    {this.renderContent('朋友')}
-                    </TabBar.Item>
-                    <TabBar.Item
-                    icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/cKhfyLTszUeFARPgfokz.png' }}
-                   selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/bqUXyjiOyKrXRfiIZVsZ.png' }}
-                    title="我的"
-                    key="我的"
-                    selected={this.state.selectedTab === 'yellowTab'}
-                    onPress={() => {
-                        this.setState({
-                        selectedTab: 'yellowTab',
-                        });
-                    }}
-                    >
-                    {this.renderContent('我的')}
-                    </TabBar.Item>
-                </TabBar>
-                 */}
+                
             </ScrollView>
         );
 
